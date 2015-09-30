@@ -47,7 +47,16 @@ var fpsTime = 0;
 // var chuckNorris = document.createElement("img");
 // chuckNorris.src = "hero.png";
 var player = new Player();
-var keyboard = new Keyboard();
+var enemy = new Enemy();
+var bullet = new Bullet();
+var keyboard = new Keyboard();        
+
+// Reposition player and enemy, so they don't overlap.
+player.x = canvas.width*0.75;
+player.y = canvas.height/2;
+enemy.x = canvas.width*0.25;
+enemy.y = canvas.height/2;
+
 
 function run()
 {
@@ -59,9 +68,14 @@ function run()
 	// context.drawImage(chuckNorris, SCREEN_WIDTH/2 - chuckNorris.width/2, SCREEN_HEIGHT/2 - chuckNorris.height/2);
 	player.update(deltaTime);
 	player.draw();
+	
+	// enemy.update(deltaTime);
+	enemy.draw();
+	
+	bullet.update(deltaTime);
+	bullet.draw();
 
-		
-	// update the frame counter 
+		// update the frame counter 
 	fpsTime += deltaTime;
 	fpsCount++;
 	if(fpsTime >= 1)
